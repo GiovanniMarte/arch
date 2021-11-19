@@ -40,9 +40,9 @@ clear
 read -p "Introduce tu nombre de usuario: " NAME
 printf "Introduce tu contraseña: "
 read -s PASS
-useradd -mG wheel "$NAME"
+useradd -m "$NAME"
 echo "$NAME:$PASS" | chpasswd
-echo "%wheel ALL=(ALL) ALL" | EDITOR="tee -a" visudo
+echo "$NAME ALL=(ALL) ALL" > /etc/sudoers.d/"$NAME"
 
 clear
 
