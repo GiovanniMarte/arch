@@ -1,9 +1,7 @@
 #!/bin/bash
-
 clear
 
 echo -e "\e[1;32m----- Bienvenido al script de automatización de instalación de Arch Linux! -----\033[0m"
-
 while true; do
     read -p "Deseas comenzar el proceso de instalación? (y/n) " yn
     case $yn in
@@ -12,7 +10,6 @@ while true; do
         * ) echo "Por favor introduce sí (y) o no (n)";;
     esac
 done
-
 clear
 
 # Basic configuration
@@ -26,24 +23,12 @@ echo "arch" > /etc/hostname
 echo "127.0.0.1	localhost" >>  /etc/hosts
 echo "::1	localhost" >>  /etc/hosts
 echo "127.0.1.1	arch.localdomain	arch" >>  /etc/hosts
-
 clear
 
 # Set root password
 printf "Introduce la contraseña de administrador: "
 read -s ROOTPASS
 echo "root:$ROOTPASS" | chpasswd
-
-clear
-
-# Create new user
-read -p "Introduce tu nombre de usuario: " NAME
-printf "Introduce tu contraseña: "
-read -s PASS
-useradd -m "$NAME"
-echo "$NAME:$PASS" | chpasswd
-echo "$NAME ALL=(ALL) ALL" > /etc/sudoers.d/"$NAME"
-
 clear
 
 # Basic packages installation
@@ -57,7 +42,15 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Enable services
 systemctl enable NetworkManager
 systemctl enable lightdm
+clear
 
+# Create new user
+read -p "Introduce tu nombre de usuario: " NAME
+printf "Introduce tu contraseña: "
+read -s PASS
+useradd -m "$NAME"
+echo "$NAME:$PASS" | chpasswd
+echo "$NAME ALL=(ALL) ALL" > /etc/sudoers.d/"$NAME"
 clear
 
 echo -e "\e[1;32mTerminado! Escribe exit, umount -R /mnt y reboot\033[0m"
