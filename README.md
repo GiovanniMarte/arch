@@ -12,5 +12,5 @@ loadkeys es
 ```
 **Ejecutar script de configuración**
 ```
-curl -sL https://raw.githubusercontent.com/GiovanniMarte/arch/main/setup.sh | bash
+curl -s https://raw.githubusercontent.com/GiovanniMarte/arch/main/setup.sh | bash
 ```
