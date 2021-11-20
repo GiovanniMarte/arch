@@ -9,7 +9,7 @@ mkfs.ext4 /dev/sda3
 # Mount partitions
 mkdir /mnt/efi
 mount /dev/sda1 /mnt/efi
-swapon /mnt/sda2
+swapon /dev/sda2
 mount /dev/sda3 /mnt
 
 # Base linux setup and chroot
