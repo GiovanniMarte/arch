@@ -16,7 +16,7 @@ mkfs.ext4 /dev/sda3
 
 # Mount partitions
 printf "Mounting partitions..."
-mkdir /mnt/efi
-mount /dev/sda1 /mnt/efi
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
 swapon /dev/sda2
 mount /dev/sda3 /mnt
