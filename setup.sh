@@ -1,17 +1,6 @@
 #!/bin/bash
 clear
 
-echo -e "\e[1;32m----- Bienvenido al script de instalación de Arch Linux! -----\033[0m"
-
-while true; do
-    read -p "Deseas comenzar el proceso de configuración? (y/n) " yn
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) exit;;
-        * ) echo "Por favor introduce sí (y) o no (n)";;
-    esac
-done
-
 # Format partitions
 mkfs.fat -F 32 /dev/sda1
 mkswap /dev/sda2
@@ -31,3 +20,5 @@ arch-chroot /mnt
 # Get base install script
 curl -O https://raw.githubusercontent.com/GiovanniMarte/arch/main/arch-base.sh
 chmod +x arch-base.sh
+
+echo -e "\e[1;32mPara comenzar la instalación ejecuta ./arch-base.sh\033[0m"
