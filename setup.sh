@@ -1,8 +1,12 @@
 #!/bin/bash
 clear
 
+# Calculate swap size
+SWAP=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+SWAP=$((${SWAP}/2000))"M"
+
 # Create partitions
-echo -e "g\nn\n\n\n+${EFI}\nn\n\n\n+${SWAP}\nn\n\n\n\nw\n" | fdisk /dev/sda
+echo -e "g\nn\n\n\n+512M\nn\n\n\n+${SWAP}\nn\n\n\n\nw\n" | fdisk /dev/sda
 
 # Format partitions
 mkfs.fat -F 32 /dev/sda1
