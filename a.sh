@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read "EFI?Introduce el tamaño de la partición EFI: "
-read "SWAP?Introduce el tamaño de la partición SWAP: "
+read "Introduce el tamaño de la partición EFI: " EFI
+read "Introduce el tamaño de la partición SWAP: " SWAP
 
 echo "$EFI, $SWAP"
