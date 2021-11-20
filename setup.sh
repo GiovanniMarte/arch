@@ -28,4 +28,5 @@ cd /mnt
 curl -O https://raw.githubusercontent.com/GiovanniMarte/arch/main/arch-base.sh
 chmod +x arch-base.sh
 
-echo "Para comenzar la instalación ejecuta 'arch-chroot /mnt' y './arch-base.sh'"
+# Change root and run base script
+arch-chroot /mnt ./arch-base.sh
