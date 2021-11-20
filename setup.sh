@@ -1,14 +1,27 @@
 #!/bin/bash
 clear
 
-# Setup
-read -p "Introduce el tamaño de la partición EFI: " EFI
-read -p "Introduce el tamaño de la partición SWAP: " SWAP
-clear
+echo -e "\e[1;32m----- Bienvenido al script de instalación de Arch Linux! -----\033[0m"
 
-# Create partitions
-echo -e "g\nn\n\n\n$EFI\nt\n1\n1\nnn\n\n\n$SWAP\nt\n1\n1\nw\n" | fdisk /dev/sda
-clear
+while true; do
+    read -p "Deseas comenzar el proceso de configuración? (y/n) " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Por favor introduce sí (y) o no (n)";;
+    esac
+done
+
+# Format partitions
+mkfs.fat -F 32 /dev/sda1
+mkswap /dev/sda2
+mkfs.ext4 -F 32 /dev/sda3
+
+# Mount partitions
+mkdir /mnt/efi
+mount /dev/sda1 /mnt/efi
+swapon /mnt/sda2
+mount /dev/sda3 /mnt
 
 # Base linux setup and chroot
 pacstrap /mnt base linux linux-firmware
