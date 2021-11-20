@@ -1,6 +1,5 @@
 #!/bin/bash
 clear
-loadkeys es
 
 # Setup
 read -p "Introduce el tamaño de la partición EFI: " EFI
