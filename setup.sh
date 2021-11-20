@@ -1,6 +1,9 @@
 #!/bin/bash
 clear
 
+# Create partitions
+echo -e "g\nn\n\n\n+${EFI}\nn\n\n\n+${SWAP}\nn\n\n\n\nw\n" | fdisk /dev/sda
+
 # Format partitions
 mkfs.fat -F 32 /dev/sda1
 mkswap /dev/sda2
